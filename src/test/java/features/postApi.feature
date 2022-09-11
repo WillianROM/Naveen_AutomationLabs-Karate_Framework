@@ -9,7 +9,7 @@ Background:
     """
     {
         "name":"jerry",
-        "email": "jerry@tomandjerry.com",
+        "email": "jerry2@tomandjerry.com",
         "gender": "male",
         "status": "active"
     }
@@ -21,7 +21,7 @@ Scenario: Create a user with a given data
     And header Authorization = 'Bearer ' + tokenID
     When method POST
     Then status 201
-    And match $.data.id == '#present'
-    And match $.data.name == '#present'
-    And match $.data.name == 'jerry'
-    And match $.data.email == 'jerry@tomandjerry.com'
+    And match $.id == '#present'
+    And match $.name == '#present'
+    And match $.name == 'jerry'
+    And match $.email == 'jerry2@tomandjerry.com'
