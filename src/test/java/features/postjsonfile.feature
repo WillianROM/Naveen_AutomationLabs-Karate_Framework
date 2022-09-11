@@ -1,7 +1,7 @@
-# #8 - Generate Random Email String in POST Call in #Karate [Latest 2022]
-# https://www.youtube.com/watch?v=ILop93YVUao&list=PLFGoYjJG_fqpUgFYoKIMZJAblUbGHSQAb&index=8
+# #9 - Pass JSON File in POST Call in #Karate [Latest 2022]
+# https://www.youtube.com/watch?v=XjRVJ2OfwyE&list=PLFGoYjJG_fqpUgFYoKIMZJAblUbGHSQAb&index=10
 
-Feature: Create user using post api
+Feature: Create user using post api with json file
 
 Background:
     * url 'https://gorest.co.in'
@@ -20,17 +20,10 @@ Background:
     * def randomString = random_string(10)
     * print randomString
 
-    * def requestPayload =
-    """
-    {
-        "name": "jerry",
-        "gender": "male",
-        "status": "active"
-    }
-    """
+    * def requestPayload = read('../../resources/payload/user.json')
+
     * requestPayload.email =  randomString+"@tomandjerry.com"
     * print requestPayload
-    
 
 Scenario: Create a user with a given data
     Given path '/public/v2/users'
