@@ -12,10 +12,9 @@ Background:
         function(s){
             var text = "";
             var pattern = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwyz";
-            for(var i=0; i<s; i++){
+            for(var i=0; i<s; i++)
                 text += pattern.charAt(Math.floor(Math.random() * pattern.length()));
                 return text;
-            }
         }
     """
     * def randomString = random_string(10)
@@ -28,10 +27,10 @@ Background:
         "gender": "male",
         "status": "active"
     }
-
-    requestPayload.email =  randomString+"@tomandjerry.com"
-    print requestPayload
     """
+    * requestPayload.email =  randomString+"@tomandjerry.com"
+    * print requestPayload
+    
 
 Scenario: Create a user with a given data
     Given path '/public/v2/users'
@@ -39,7 +38,7 @@ Scenario: Create a user with a given data
     And header Authorization = 'Bearer ' + tokenID
     When method POST
     Then status 201
-    And match $.data.id == '#present'
-    And match $.data.name == '#present'
-    And match $.data.name == 'jerry'
-    And match $.data.email == requestPayload.email 
+    And match $.id == '#present'
+    And match $.name == '#present'
+    And match $.name == 'jerry'
+    And match $.email == requestPayload.email 
